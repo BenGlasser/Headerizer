@@ -14,7 +14,7 @@ public class Headerizer {
 	private static final String MISSING_ARGS = "missing one or more parameters";
 	private static final String MISSING_FILE = "specified file does not exist: ";
 
-	private static String ext = null;
+	private static String[] ext = null;
 	private static String file = null;
 	private static String header = null;
 	private static boolean recursive = false;
@@ -49,6 +49,7 @@ public class Headerizer {
 		StringBuilder contents = new StringBuilder(header + "\n");
 		int myChar;
 		try {
+			FileUtils.listFiles(file, ext, recursive);
 			FileReader reader = new FileReader(file);
 			while((myChar = reader.read()) != -1){
 				contents.append(Character.toChars(myChar));
@@ -80,7 +81,7 @@ public class Headerizer {
 			System.setErr(System.out.printf(MISSING_ARGS));
 			System.exit(MISSING_ARGS_CODE);
 		}
-		ext = args[0];
+		//ext = new args[0];
 		file = args[1];
 		header = args[2];
 	}
