@@ -1,0 +1,26 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+
+defaultTasks 'clean', 'build'
+
+repositories {
+  mavenCentral()
+}
+
+configurations.all {}
+
+dependencies {
+  compile 'org.slf4j:slf4j-simple:1.6.6'
+  compile 'org.apache.commons:commons-io:1.3.2'
+}
+sourceSets {
+    main {
+        java {
+            srcDir 'src/com/benglasser/headerizer'
+        }
+        resources {
+            srcDir 'src/resources'
+        }
+    }
+}

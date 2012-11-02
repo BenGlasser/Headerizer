@@ -6,7 +6,7 @@
 package com.benglasser.headerizer;
 
 import java.io.*;
-
+import org.apache.commons.io.FileUtils;
 public class Headerizer {
 
 	private static final int MISSING_ARGS_CODE = 1;
@@ -37,7 +37,7 @@ public class Headerizer {
 	}
 
 	private static boolean fileExists(File testFile) {
-		// TODO Auto-generated method stub
+		// FIXME cheap error handling here...
 		if (!testFile.exists()) {
 			System.setErr(System.out.printf(MISSING_FILE + testFile.toString()));
 			System.exit(MISSING_FILE_CODE);
