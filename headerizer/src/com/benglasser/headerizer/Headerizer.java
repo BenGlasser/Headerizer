@@ -6,7 +6,9 @@
 package com.benglasser.headerizer;
 
 import java.io.*;
+import java.util.ArrayList;
 import org.apache.commons.io.FileUtils;
+
 public class Headerizer {
 
 	private static final int MISSING_ARGS_CODE = 1;
@@ -14,10 +16,11 @@ public class Headerizer {
 	private static final String MISSING_ARGS = "missing one or more parameters";
 	private static final String MISSING_FILE = "specified file does not exist: ";
 
-	private static String[] ext = null;
-	private static String file = null;
+	private static String ext = null;
+	private static String filePath = null;
 	private static String header = null;
 	private static boolean recursive = false;
+	private static ArrayList<File> fileList = null;
 
 	/**
 	 * @param args
@@ -26,7 +29,7 @@ public class Headerizer {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		parse(args);
-		File rootFile = new File(file);
+		File rootFile = new File(filePath);
 		if (!fileExists(rootFile)) {
 			System.setErr(System.out.printf(MISSING_FILE));
 			System.exit(MISSING_FILE_CODE);
@@ -46,21 +49,38 @@ public class Headerizer {
 	}
 
 	private static void insertHeader(File file) {
-		StringBuilder contents = new StringBuilder(header + "\n");
-		int myChar;
-		try {
-			FileUtils.listFiles(file, ext, recursive);
-			FileReader reader = new FileReader(file);
-			while((myChar = reader.read()) != -1){
-				contents.append(Character.toChars(myChar));
+		if (file.isDirectory()) {
+
+			try {
+				fileList = new ArrayList<File>(FileUtils.listFiles(file,
+						new String[] { ext }, recursive));
+				for (File i : fileList) {
+					prependToFile(i);
+				}
+			} catch (Exception e) {
+				// TODO handle exception here.
+				e.printStackTrace();
 			}
-			reader.close();
-			FileWriter writer = new FileWriter(file);
-			writer.write(contents.toString());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} else if (file.isFile()) {
+			prependToFile(file);
 		}
+	}
+
+	private static void prependToFile(File file) {
+		try {
+			File tmp = File.createTempFile("tmp", null);
+			FileUtils.copyFile(file, tmp);//(tmp, FileUtils.readFileToString(file));
+			FileUtils.writeStringToFile(file, header);
+			FileUtils.writeStringToFile(file, FileUtils.readFileToString(tmp), true);
+
+		} catch (IOException e) {
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
+
 	}
 
 	private static void parse(String[] args) {
@@ -81,9 +101,9 @@ public class Headerizer {
 			System.setErr(System.out.printf(MISSING_ARGS));
 			System.exit(MISSING_ARGS_CODE);
 		}
-		//ext = new args[0];
-		file = args[1];
-		header = args[2];
+		ext = args[0];
+		filePath = args[1];
+		header = args[2] + "\n";
 	}
 
 }
