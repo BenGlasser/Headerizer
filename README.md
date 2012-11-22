@@ -8,7 +8,7 @@ Current State
 -------------
 As of now, Hederizer has been realesed only as a commandline utility and can be run as follows:
 
-**java -jar headerizer.jar -[r <file extention>] [ <source file> | <source dir> ] <header>**
+**`java -jar headerizer.jar -[r <file extention>] [ <source file> | <source dir> ] <header>`**
 
 the jar for this project can be found under [Downloads](https://github.com/BenGlasser/Headerizer/downloads)
 
