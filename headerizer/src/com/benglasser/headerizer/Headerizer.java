@@ -27,6 +27,11 @@ public class Headerizer {
 	 *            headerizer.java -r <file extention> <directory> <header>
 	 */
 	public static void main(String[] args) {
+		if(args.length < 3){
+			System.err.println(MISSING_ARGS);
+			System.exit(1);
+		}
+		
 		// TODO Auto-generated method stub
 		parse(args);
 		File rootFile = new File(filePath);
@@ -49,6 +54,7 @@ public class Headerizer {
 	}
 
 	private static void insertHeader(File file) {
+		
 		if (file.isDirectory()) {
 
 			try {
