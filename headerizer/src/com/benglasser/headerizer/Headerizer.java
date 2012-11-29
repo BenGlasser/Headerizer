@@ -75,7 +75,7 @@ public class Headerizer {
 	private static void prependToFile(File file) {
 		try {
 			File tmp = File.createTempFile("tmp", null);
-			FileUtils.copyFile(file, tmp);//(tmp, FileUtils.readFileToString(file));
+			FileUtils.copyFile(file, tmp);
 			FileUtils.writeStringToFile(file, header);
 			FileUtils.writeStringToFile(file, FileUtils.readFileToString(tmp), true);
 
@@ -109,7 +109,7 @@ public class Headerizer {
 		}
 		ext = args[0];
 		filePath = args[1];
-		header = args[2] + "\n";
+		header = args[2] + "\n\r";
 	}
 
 }
