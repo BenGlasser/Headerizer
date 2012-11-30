@@ -5,6 +5,7 @@
 
 package com.benglasser.headerizer;
 
+import com.martiansoftware.jsap.*;
 import java.io.*;
 import java.util.ArrayList;
 import org.apache.commons.io.FileUtils;
@@ -21,17 +22,20 @@ public class Headerizer {
 	private static String header = null;
 	private static boolean recursive = false;
 	private static ArrayList<File> fileList = null;
+	private static JSAP jsap;
+	private static JSAPResult config;
 
 	/**
 	 * @param args
 	 *            headerizer.java -r <file extention> <directory> <header>
 	 */
 	public static void main(String[] args) {
-		if(args.length < 3){
+		buildJsap(args);
+		/*if (args.length < 3) {
 			System.err.println(MISSING_ARGS);
 			System.exit(1);
 		}
-		
+
 		// TODO Auto-generated method stub
 		parse(args);
 		File rootFile = new File(filePath);
@@ -40,7 +44,53 @@ public class Headerizer {
 			System.exit(MISSING_FILE_CODE);
 		} else {
 			insertHeader(rootFile);
-		}
+		}*/
+
+	}
+
+	private static void buildJsap(String[] args) {
+		jsap = new JSAP();
+
+		UnflaggedOption fileType = new UnflaggedOption("fileType")
+				.setStringParser(JSAP.STRING_PARSER)
+				.setDefault("txt") //set default file type to txt
+				.setRequired(true)
+                .setGreedy(true);
+		
+		UnflaggedOption directory = new UnflaggedOption("directory")
+				.setStringParser(JSAP.STRING_PARSER)
+				.setDefault("./") //set default file type to txt
+				.setRequired(true)
+				.setGreedy(false);
+		
+		UnflaggedOption header = new UnflaggedOption("header")
+				.setStringParser(JSAP.STRING_PARSER)
+				.setDefault("//  Default Header") //set default file type to txt
+				.setRequired(true)
+				.setGreedy(false);
+		
+		Switch recursive = new Switch("recursive")
+        		.setShortFlag('r')
+        		.setLongFlag("recursive");
+		try{
+		jsap.registerParameter(recursive);
+		jsap.registerParameter(directory);
+		jsap.registerParameter(header);
+		jsap.registerParameter(fileType);
+		config = jsap.parse(args);
+		} catch (Exception e){
+            System.err.println();
+            System.err.println("Usage: java "
+                                + Headerizer.class.getName());
+            System.err.println("                "
+                                + jsap.getUsage());
+            System.err.println();
+            // show full help as well
+            System.err.println(jsap.getHelp());
+            System.exit(1);
+            }
+		System.out.println(jsap.getUsage());
+		System.out.println(jsap.getHelp());
 
 	}
 
@@ -54,7 +104,7 @@ public class Headerizer {
 	}
 
 	private static void insertHeader(File file) {
-		
+
 		if (file.isDirectory()) {
 
 			try {
@@ -77,7 +127,8 @@ public class Headerizer {
 			File tmp = File.createTempFile("tmp", null);
 			FileUtils.copyFile(file, tmp);
 			FileUtils.writeStringToFile(file, header);
-			FileUtils.writeStringToFile(file, FileUtils.readFileToString(tmp), true);
+			FileUtils.writeStringToFile(file, FileUtils.readFileToString(tmp),
+					true);
 
 		} catch (IOException e) {
 
