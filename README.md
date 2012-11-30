@@ -8,7 +8,18 @@ Current State
 -------------
 As of now, Hederizer has been realesed only as a commandline utility and can be run as follows:
 
-**`java -jar headerizer.jar -[r <file extention>] [ <source file> | <source dir> ] <header>`**
+//**`java -jar headerizer.jar -[r <file extention>] [ <source file> | <source dir> ] <header>`**
+`java -jar headerizer.jar [-r|--recursive] <directory> <header> fileType1 fileType2 ... fileTypeN
+  [-r|--recursive]
+
+  <directory>
+        (default: ./)
+
+  <header>
+        (default: //  Default Header)
+
+  fileType1 fileType2 ... fileTypeN
+        (default: txt)`
 
 the jar for this project can be found under [Downloads](https://github.com/BenGlasser/Headerizer/downloads)
 
