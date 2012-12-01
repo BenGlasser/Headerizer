@@ -6,21 +6,31 @@ Headerizer is a utility that (when finished) will recursively sift through sub d
 
 Current State
 -------------
-As of now, Hederizer has been realesed only as a commandline utility and can be run as follows:
+As of now, Hederizer has been realesed only as a commandline utility and can be used  as follows:
 
 
 ```
-java -jar headerizer.jar [-r|--recursive] <directory> <header> fileType1 fileType2 ... fileTypeN
+[-r|--recursive] [-h|--help] [-v|--verbose] <directory> <header> fileType1 fileType2 ... fileTypeN
+
   [-r|--recursive]
+        tell Headerizer whether or not to recursively search subdirectories for
+        matching files
+
+  [-h|--help]
+        displays this message
+
+  [-v|--verbose]
+        Requests verbose output
 
   <directory>
-        (default: ./)
+        Name of directory or file which is to be Headerized (default: ./)
 
   <header>
+        This is the intended header to be inserted into the specified files
         (default: //  Default Header)
 
   fileType1 fileType2 ... fileTypeN
-        (default: txt)
+        file extensions of files which are to be Headerized (default: txt)
 ```
 
 the jar for this project can be found under [Downloads](https://github.com/BenGlasser/Headerizer/downloads)
