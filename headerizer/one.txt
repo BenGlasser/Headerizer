@@ -1,4 +1,5 @@
-//sample
+//  Default Header
+//sample
 
 GNU GENERAL PUBLIC LICENSE
 

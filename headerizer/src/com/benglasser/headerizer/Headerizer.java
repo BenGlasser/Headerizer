@@ -66,6 +66,7 @@ public class Headerizer {
 						cli.Config().getStringArray(CLIP.FILE_TYPE), cli.Config().getBoolean(CLIP.RECURSIVE)));
 				for (File i : fileList) {
 					prependToFile(i);
+					System.out.println(i.toString()+ " Headerized!");
 				}
 			} catch (Exception e) {
 				// TODO handle exception here.
@@ -73,10 +74,13 @@ public class Headerizer {
 			}
 		} else if (file.isFile()) {
 			prependToFile(file);
+			System.out.println(file.toString()+ " Headerized!");
 		}
+		System.out.println("Headerization completed successfully.");
 	}
 
 	private static void prependToFile(File file) {
+
 		try {
 			File tmp = File.createTempFile("tmp", null);
 			FileUtils.copyFile(file, tmp);
