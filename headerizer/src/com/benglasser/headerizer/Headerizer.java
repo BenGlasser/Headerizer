@@ -1,5 +1,6 @@
 /**
  * @author  Copyright (c) 2012 Ben Glasser
+ * JSAP help http://www.martiansoftware.com/jsap/doc/
  * 
  */
 
@@ -30,65 +31,52 @@ public class Headerizer {
 	 *            headerizer.java -r <file extention> <directory> <header>
 	 */
 	public static void main(String[] args) {
-		buildJsap(args);
-		/*if (args.length < 3) {
-			System.err.println(MISSING_ARGS);
-			System.exit(1);
-		}
-
-		// TODO Auto-generated method stub
-		parse(args);
-		File rootFile = new File(filePath);
-		if (!fileExists(rootFile)) {
-			System.setErr(System.out.printf(MISSING_FILE));
-			System.exit(MISSING_FILE_CODE);
-		} else {
-			insertHeader(rootFile);
-		}*/
+		CLIP cli = new CLIP(args);
+		// buildJsap(args);
+		/*
+		 * if (args.length < 3) { System.err.println(MISSING_ARGS);
+		 * System.exit(1); }
+		 * 
+		 * // TODO Auto-generated method stub parse(args); File rootFile = new
+		 * File(filePath); if (!fileExists(rootFile)) {
+		 * System.setErr(System.out.printf(MISSING_FILE));
+		 * System.exit(MISSING_FILE_CODE); } else { insertHeader(rootFile); }
+		 */
 
 	}
 
 	private static void buildJsap(String[] args) {
 		jsap = new JSAP();
-
 		UnflaggedOption fileType = new UnflaggedOption("fileType")
-				.setStringParser(JSAP.STRING_PARSER)
-				.setDefault("txt") //set default file type to txt
-				.setRequired(true)
-                .setGreedy(true);
-		
+				.setStringParser(JSAP.STRING_PARSER).setDefault("txt") 
+				.setRequired(true).setGreedy(true);
+
 		UnflaggedOption directory = new UnflaggedOption("directory")
-				.setStringParser(JSAP.STRING_PARSER)
-				.setDefault("./") //set default file type to txt
-				.setRequired(true)
-				.setGreedy(false);
-		
+				.setStringParser(JSAP.STRING_PARSER).setDefault("./") 
+				.setRequired(true).setGreedy(false);
+
 		UnflaggedOption header = new UnflaggedOption("header")
 				.setStringParser(JSAP.STRING_PARSER)
-				.setDefault("//  Default Header") //set default file type to txt
-				.setRequired(true)
-				.setGreedy(false);
-		
-		Switch recursive = new Switch("recursive")
-        		.setShortFlag('r')
-        		.setLongFlag("recursive");
-		try{
-		jsap.registerParameter(recursive);
-		jsap.registerParameter(directory);
-		jsap.registerParameter(header);
-		jsap.registerParameter(fileType);
-		config = jsap.parse(args);
-		} catch (Exception e){
-            System.err.println();
-            System.err.println("Usage: java "
-                                + Headerizer.class.getName());
-            System.err.println("                "
-                                + jsap.getUsage());
-            System.err.println();
-            // show full help as well
-            System.err.println(jsap.getHelp());
-            System.exit(1);
-            }
+				.setDefault("//  Default Header") 
+				.setRequired(true).setGreedy(false);
+
+		Switch recursive = new Switch("recursive").setShortFlag('r')
+				.setLongFlag("recursive");
+		try {
+			jsap.registerParameter(recursive);
+			jsap.registerParameter(directory);
+			jsap.registerParameter(header);
+			jsap.registerParameter(fileType);
+			config = jsap.parse(args);
+		} catch (Exception e) {
+			System.err.println();
+			System.err.println("Usage: java " + Headerizer.class.getName());
+			System.err.println("                " + jsap.getUsage());
+			System.err.println();
+			// show full help as well
+			System.err.println(jsap.getHelp());
+			System.exit(1);
+		}
 		System.out.println(jsap.getUsage());
 		System.out.println(jsap.getHelp());
 
