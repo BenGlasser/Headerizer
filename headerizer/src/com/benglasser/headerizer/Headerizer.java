@@ -76,7 +76,7 @@ public class Headerizer {
 			prependToFile(file);
 			System.out.println(file.toString()+ " Headerized!");
 		}
-		System.out.println("Headerization completed successfully.");
+		System.out.println("Headerization completed successfully. . .");
 	}
 
 	private static void prependToFile(File file) {
