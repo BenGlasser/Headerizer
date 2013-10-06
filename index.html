@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Headerizer by BenGlasser</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Headerizer</h1>
+        <p>a utility for inserting a header into multiple files</p>
+
+        <p class="view"><a href="https://github.com/BenGlasser/Headerizer">View the Project on GitHub <small>BenGlasser/Headerizer</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/BenGlasser/Headerizer/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/BenGlasser/Headerizer/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/BenGlasser/Headerizer">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="headerizer" class="anchor" href="#headerizer"><span class="octicon octicon-link"></span></a>Headerizer</h1>
+
+<p>Copyright © 2012 Ben Glasser</p>
+
+<p>Headerizer is a utility that (when finished) will recursively sift through sub directories of a specified root inserting a header into files of a specified type.  Headerizer was inspired by <a href="https://github.com/BartMassey" class="user-mention">@BartMassey</a> <a href="https://github.com/BartMassey/emacs-copyright">emacs-copyright</a> and is released under a GPLv3.0 license</p>
+
+<h2>
+<a name="current-state" class="anchor" href="#current-state"><span class="octicon octicon-link"></span></a>Current State</h2>
+
+<p>As of now, Hederizer has been realesed only as a commandline utility and can be used  as follows:</p>
+
+<pre><code>[-r|--recursive] [-h|--help] [-v|--verbose] &lt;directory&gt; &lt;header&gt; fileType1 fileType2 ... fileTypeN
+
+  [-r|--recursive]
+        tell Headerizer whether or not to recursively search subdirectories for
+        matching files
+
+  [-h|--help]
+        displays this message
+
+  [-v|--verbose]
+        Requests verbose output
+
+  &lt;directory&gt;
+        Name of directory or file which is to be Headerized (default: ./)
+
+  &lt;header&gt;
+        This is the intended header to be inserted into the specified files
+        (default: //  Default Header)
+
+  fileType1 fileType2 ... fileTypeN
+        file extensions of files which are to be Headerized (default: txt)
+</code></pre>
+
+<p>the jar for this project can be found under <a href="https://github.com/BenGlasser/Headerizer/downloads">Downloads</a></p>
+
+<p>note that there is little to no error handleing/fault tolerance right now so this may blow up in your face, but it hasn't lost a file yet ;)</p>
+
+<p>Currently, Headerizer works by prepending the specified header at the begining of the specified file.  if the -r option is invoked and a directory is passed as an argument it will prepend the header to all files of the specified file type found in that directory and all sub directories.</p>
+
+<h2>
+<a name="future-plans" class="anchor" href="#future-plans"><span class="octicon octicon-link"></span></a>Future Plans</h2>
+
+<p>So far no future releases have been formalized, but it is my intention to incorporate the following features into Headerizer as the projects develops</p>
+
+<ul>
+<li>   GUI </li>
+<li>   Insert headers into multiple file types at once</li>
+<li>   Automatic comment prefixing based on file type</li>
+<li>   Automatic name, date, and copyright entry</li>
+<li>   Support for multiple projects across a disjoint directory structure</li>
+</ul><p>any other ideas? you are welcome pass them along or implement them as you see fit.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/BenGlasser">BenGlasser</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
