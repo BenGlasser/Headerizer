@@ -1,3 +1,5 @@
+[![endorse](https://api.coderwall.com/benglasser/endorsecount.png)](https://coderwall.com/benglasser)
+
 Headerizer
 ==========
 Copyright © 2012 Ben Glasser
